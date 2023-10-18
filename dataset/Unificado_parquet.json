@@ -1,0 +1,24 @@
+{
+	"name": "Unificado_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Challenge_salida"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "unificado/",
+				"folderPath": "bronze",
+				"fileSystem": "challenge"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
