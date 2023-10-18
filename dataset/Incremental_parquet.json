@@ -1,0 +1,83 @@
+{
+	"name": "Incremental_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Challenge_entrada"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat('bronze/nuevas_filas','/',formatDateTime(utcNow(),'yyyy'),'/',formatDateTime(utcNow(),'MM'),'/',formatDateTime(utcNow(),'dd'))",
+					"type": "Expression"
+				},
+				"fileSystem": "challenge"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "CHROM",
+				"type": "UTF8"
+			},
+			{
+				"name": "POS",
+				"type": "INT64"
+			},
+			{
+				"name": "ID",
+				"type": "UTF8"
+			},
+			{
+				"name": "REF",
+				"type": "UTF8"
+			},
+			{
+				"name": "ALT",
+				"type": "UTF8"
+			},
+			{
+				"name": "QUAL",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "FILTER",
+				"type": "UTF8"
+			},
+			{
+				"name": "INFO",
+				"type": "UTF8"
+			},
+			{
+				"name": "FORMAT",
+				"type": "UTF8"
+			},
+			{
+				"name": "MUESTRA",
+				"type": "INT64"
+			},
+			{
+				"name": "VALOR",
+				"type": "UTF8"
+			},
+			{
+				"name": "ORIGEN",
+				"type": "UTF8"
+			},
+			{
+				"name": "FECHA_COPIA",
+				"type": "INT96"
+			},
+			{
+				"name": "RESULTADO",
+				"type": "UTF8"
+			}
+		]
+	}
+}
