@@ -1,0 +1,9 @@
+{
+	"name": "datafactorychallengeconrado",
+	"location": "brazilsouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f7cadc48-9f9a-4309-89e7-1b01f502d3f8",
+		"tenantId": "15d35be8-75e6-4c6c-8e94-424900997a8e"
+	}
+}
