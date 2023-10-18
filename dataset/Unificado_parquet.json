@@ -13,8 +13,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "unificado/",
-				"folderPath": "bronze",
+				"fileName": "unificado.parquet",
+				"folderPath": "bronze/unificado",
 				"fileSystem": "challenge"
 			},
 			"compressionCodec": "snappy"
