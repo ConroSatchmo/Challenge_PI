@@ -1,5 +1,5 @@
 {
-	"name": "landing_trusted",
+	"name": "origin_landing_trusted",
 	"properties": {
 		"activities": [
 			{
@@ -25,6 +25,82 @@
 			{
 				"name": "landing_trusted",
 				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Challenge_Pi/landing_to_trusted_incremental"
+				},
+				"linkedServiceName": {
+					"referenceName": "landing_trusted",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "ejecucion_correcta_landing_trusted",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "landing_trusted",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-14.brazilsouth.logic.azure.com:443/workflows/e5cbc3399ee643c08e79291b319b0be7/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=X42Ok6QCqyvsrjb3pDQkogM2qCFEgdDRwW0juL47bfM",
+					"method": "POST",
+					"body": {
+						"value": "{\n    \"title\": \"PIPELINE EJECUTADO\",\n\"message\": \"PIPELINE EJECUTADO CON EXITO\",\n\"color\": \"GREEN\",\n\"dataFactoryName\": \"@{pipeline().DataFactory}\"\n\"pipelineName\": \"@{pipeline().Pipeline}\"\n\"pipelinerunId\": \"@{pipeline().RunId}\",\n\"time\": \"@{utcNow()}\"\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ejecucion_erronea_landing_trusted",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "landing_trusted",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-14.brazilsouth.logic.azure.com:443/workflows/e5cbc3399ee643c08e79291b319b0be7/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=X42Ok6QCqyvsrjb3pDQkogM2qCFEgdDRwW0juL47bfM",
+					"method": "POST",
+					"body": {
+						"value": "{\n    \"title\": \"PIPELINE EJECUTADO\",\n\"message\": \"PIPELINE EJECUTADO CON ERRORES\",\n\"color\": \"RED\",\n\"dataFactoryName\": \"@{pipeline().DataFactory}\"\n\"pipelineName\": \"@{pipeline().Pipeline}\"\n\"pipelinerunId\": \"@{pipeline().RunId}\",\n\"time\": \"@{utcNow()}\"\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ejecucion_correcta_origin_landing",
+				"type": "WebActivity",
 				"dependsOn": [
 					{
 						"activity": "origin_landing",
@@ -42,11 +118,40 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Challenge_Pi/landing_to_trusted_incremental"
+					"url": "https://prod-14.brazilsouth.logic.azure.com:443/workflows/e5cbc3399ee643c08e79291b319b0be7/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=X42Ok6QCqyvsrjb3pDQkogM2qCFEgdDRwW0juL47bfM",
+					"method": "POST",
+					"body": {
+						"value": "{\n    \"title\": \"PIPELINE EJECUTADO\",\n\"message\": \"PIPELINE EJECUTADO CON EXITO\",\n\"color\": \"GREEN\",\n\"dataFactoryName\": \"@{pipeline().DataFactory}\"\n\"pipelineName\": \"@{pipeline().Pipeline}\"\n\"pipelinerunId\": \"@{pipeline().RunId}\",\n\"time\": \"@{utcNow()}\"\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ejecucion_erronea_origin_landing",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "origin_landing",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
 				},
-				"linkedServiceName": {
-					"referenceName": "landing_trusted",
-					"type": "LinkedServiceReference"
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-14.brazilsouth.logic.azure.com:443/workflows/e5cbc3399ee643c08e79291b319b0be7/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=X42Ok6QCqyvsrjb3pDQkogM2qCFEgdDRwW0juL47bfM",
+					"method": "POST",
+					"body": {
+						"value": "{\n    \"title\": \"PIPELINE EJECUTADO\",\n\"message\": \"PIPELINE EJECUTADO CON ERRORES\",\n\"color\": \"RED\",\n\"dataFactoryName\": \"@{pipeline().DataFactory}\"\n\"pipelineName\": \"@{pipeline().Pipeline}\"\n\"pipelinerunId\": \"@{pipeline().RunId}\",\n\"time\": \"@{utcNow()}\"\n}",
+						"type": "Expression"
+					}
 				}
 			}
 		],
