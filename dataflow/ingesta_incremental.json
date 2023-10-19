@@ -8,36 +8,14 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "Incremental_parquet",
-						"type": "DatasetReference"
-					},
 					"name": "source1"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
-				"source(output(",
-				"          CHROM as string,",
-				"          POS as long,",
-				"          ID as string,",
-				"          REF as string,",
-				"          ALT as string,",
-				"          QUAL as double,",
-				"          FILTER as string,",
-				"          INFO as string,",
-				"          FORMAT as string,",
-				"          MUESTRA as long,",
-				"          VALOR as string,",
-				"          ORIGEN as string,",
-				"          FECHA_COPIA as timestamp,",
-				"          RESULTADO as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     format: 'parquet') ~> source1"
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source1"
 			]
 		}
 	}
