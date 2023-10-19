@@ -14,7 +14,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "unificado.parquet",
-				"folderPath": "bronze/unificado",
+				"folderPath": "landing/unificado",
 				"fileSystem": "challenge"
 			},
 			"compressionCodec": "snappy"
