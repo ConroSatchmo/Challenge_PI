@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "landing_trusted",
 	"properties": {
 		"activities": [
 			{
-				"name": "Notebook1",
+				"name": "origin_landing",
 				"type": "DatabricksNotebook",
 				"dependsOn": [],
 				"policy": {
@@ -23,11 +23,11 @@
 				}
 			},
 			{
-				"name": "Notebook2",
+				"name": "landing_trusted",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "Notebook1",
+						"activity": "origin_landing",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -40,7 +40,14 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Challenge_Pi/landing_to_trusted_incremental"
+				},
+				"linkedServiceName": {
+					"referenceName": "landing_trusted",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"folder": {
